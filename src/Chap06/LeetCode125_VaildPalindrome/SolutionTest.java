@@ -10,5 +10,8 @@ public class SolutionTest {
 
         System.out.println(s.isPalindrome(test1));
         System.out.println(s.isPalindrome(test2));
+
+        System.out.println(solution2.isPalindrome(test1));
+        System.out.println(solution2.isPalindrome(test2));
     }
 }
