@@ -3,6 +3,7 @@ package Chap06.LeetCode819_MostCommonWord;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Solution {
     public String mostCommonWord(String paragraph, String[] banned) {
@@ -17,6 +18,7 @@ public class Solution {
         targetList.removeAll(bannedList);
 
         // 이거 이해 못하겠음 자바스트림 공부필요
+        /*
         String mostCount = targetList.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet().stream()
@@ -25,7 +27,23 @@ public class Solution {
                 .orElse(null);
 
         return mostCount;
+        */
 
+        // 위의 코드와 똑같은 코드
+        String mostCount;
+        // Step 1: targetList를 스트림으로 변환
+        Stream<String> stream = targetList.stream();
+        // Step 2: 요소를 그룹화하고, 각 요소의 등장 횟수를 셉니다.
+        Map<String, Long> countMap = stream.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        // Step 3: Map의 entrySet을 스트림으로 변환
+        Stream<Map.Entry<String, Long>> entryStream = countMap.entrySet().stream();
+        // Step 4: 등장 횟수가 가장 큰 값을 찾습니다.
+        Optional<Map.Entry<String, Long>> maxEntry = entryStream.max(Map.Entry.comparingByValue());
+        // Step 5: 가장 많이 등장한 요소를 추출합니다.
+        Optional<String> mostFrequentElement = maxEntry.map(Map.Entry::getKey);
+        // Step 6: 값이 없으면 null을 반환
+        mostCount = mostFrequentElement.orElse(null);
+        return mostCount;
     }
 
 }
