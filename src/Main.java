@@ -1,10 +1,17 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("화이팅!!");
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st;
+        String[] tokens;
+
+        int n = Integer.parseInt(br.readLine()); // 한 줄 입력 후 정수 변환
+
+        br.close(); // BufferedReader 닫기
+        bw.flush();
+        bw.close();
     }
 }
